@@ -1,0 +1,34 @@
+# Database MCP Configuration
+# Used by: DB Admin, Backend Developer
+# Server: anydb-mcp (zero-config multi-database)
+
+mcp_server:
+  name: database
+  description: "Database access for schema management, queries, and optimization"
+  package: "anydb-mcp"
+
+  supported_databases:
+    - postgresql
+    - mysql
+    - sqlite
+    - mongodb
+    - redis
+
+  capabilities:
+    - query_execution         # Run SQL/NoSQL queries
+    - schema_inspection       # View tables, columns, indexes
+    - migration_support       # Track and run migrations
+    - performance_analysis    # Query explain plans, slow query logs
+
+  environment:
+    DATABASE_URL: "${DATABASE_URL}"
+
+  # Alternative: Use database-specific servers for advanced features
+  # - PostgreSQL: @anthropic/mcp-server-postgres
+  # - MySQL: mysql-mcp-server
+  # - MongoDB: mongodb-mcp-server
+
+  usage_by_agent:
+    db-admin: [query_execution, schema_inspection, migration_support, performance_analysis]
+    backend-developer: [query_execution, schema_inspection]
+    analyst: [schema_inspection]

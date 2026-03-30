@@ -1,0 +1,129 @@
+project:
+  name: "my-project"
+  description: "TODO: Describe your project"
+  repository: "https://github.com/your-org/your-repo"
+  version: "0.1.0"
+
+base: software-development
+
+# Select which agents to activate for this project.
+# Set enabled: true for agents you need, false for those you don't.
+agents:
+  director:
+    enabled: true
+
+  product-owner:
+    enabled: true
+
+  analyst:
+    enabled: true
+
+  designer:
+    enabled: true
+
+  backend-developer:
+    enabled: true
+    config:
+      language: typescript
+      framework: express
+      # Add backend-specific settings here
+
+  frontend-developer:
+    enabled: true
+    config:
+      framework: react
+      styling: tailwind
+      # Add frontend-specific settings here
+
+  tester:
+    enabled: true
+    config:
+      unit_framework: vitest
+      e2e_framework: playwright
+      coverage_threshold: 80
+
+  team-lead:
+    enabled: true
+
+  devops:
+    enabled: true
+    config:
+      ci_provider: github-actions
+      container_runtime: docker
+      deployment_target: vercel
+      # Add devops-specific settings here
+
+  marketing:
+    enabled: false
+
+  db-admin:
+    enabled: true
+    config:
+      database: postgresql
+      orm: prisma
+      # Add database-specific settings here
+
+  sre-monitoring:
+    enabled: false
+
+  mobile-developer:
+    enabled: false
+    config:
+      framework: react-native
+      platforms:
+        - ios
+        - android
+
+  security:
+    enabled: true
+
+# Tech stack declaration used by agents to tailor their output.
+tech_stack:
+  language: typescript
+  runtime: node
+  package_manager: pnpm
+  frontend:
+    framework: react
+    meta_framework: nextjs
+    styling: tailwind
+    component_library: shadcn-ui
+  backend:
+    framework: express
+    api_style: rest
+  database:
+    primary: postgresql
+    orm: prisma
+    cache: redis
+  testing:
+    unit: vitest
+    e2e: playwright
+    api: supertest
+  infrastructure:
+    hosting: vercel
+    ci_cd: github-actions
+    containerization: docker
+
+# Active workflow for this project.
+workflow: feature-lifecycle
+
+# MCP servers to enable beyond the required ones.
+mcp_servers:
+  - github      # required -- always enabled
+  - context7    # library documentation
+  # - linear    # uncomment to enable issue tracking
+  # - slack     # uncomment to enable notifications
+  # - sentry    # uncomment to enable error tracking
+  # - supabase  # uncomment to enable Supabase integration
+  # - figma     # uncomment to enable design file access
+  # - vercel    # uncomment to enable deployment management
+  # - firebase  # uncomment to enable mobile backend
+
+# Project-specific settings that agents can reference.
+settings:
+  default_branch: main
+  pr_required_approvals: 1
+  auto_merge: false
+  conventional_commits: true
+  protected_branches:
+    - main
+    - production

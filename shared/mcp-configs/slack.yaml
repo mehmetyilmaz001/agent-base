@@ -1,0 +1,31 @@
+# Slack MCP Configuration
+# Used by: Director, all agents (via Director)
+# Server: Official Slack MCP Server
+
+mcp_server:
+  name: slack
+  description: "Slack integration for team communication and notifications"
+  package: "@anthropic/mcp-server-slack"
+
+  capabilities:
+    - send_messages           # Post to channels
+    - read_messages           # Read channel history
+    - direct_messages         # Send DMs
+    - channels                # List and manage channels
+    - search                  # Search messages
+
+  environment:
+    SLACK_BOT_TOKEN: "${SLACK_BOT_TOKEN}"
+    SLACK_TEAM_ID: "${SLACK_TEAM_ID}"
+
+  # Recommended channels:
+  # - #project-updates (Director posts progress)
+  # - #dev-team (Team Lead coordinates)
+  # - #alerts (SRE monitoring alerts)
+  # - #deployments (DevOps deployment notifications)
+
+  usage_by_agent:
+    director: [send_messages, read_messages, channels]
+    team-lead: [send_messages, read_messages]
+    devops: [send_messages]
+    sre-monitoring: [send_messages]

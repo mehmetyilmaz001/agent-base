@@ -1,0 +1,42 @@
+# GitHub MCP Configuration
+# Used by: All agents
+# Server: Official GitHub MCP Server
+
+mcp_server:
+  name: github
+  description: "GitHub integration for repos, issues, PRs, projects, and actions"
+  package: "@modelcontextprotocol/server-github"
+
+  capabilities:
+    - repository_management    # Create, read, update repos
+    - issues                   # Create, update, search, label issues
+    - pull_requests           # Create, review, merge PRs
+    - projects                # GitHub Projects board management
+    - actions                 # Trigger and monitor CI/CD workflows
+    - security                # Dependabot alerts, code scanning
+    - releases                # Create and manage releases
+
+  environment:
+    GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+
+  # Recommended scopes for the token:
+  # - repo (full repository access)
+  # - project (project board access)
+  # - workflow (GitHub Actions)
+  # - read:org (organization info)
+
+  usage_by_agent:
+    director: [issues, projects, pull_requests]
+    product-owner: [issues, projects]
+    analyst: [issues]
+    team-lead: [pull_requests, issues, projects]
+    backend-developer: [repository_management, pull_requests]
+    frontend-developer: [repository_management, pull_requests]
+    mobile-developer: [repository_management, pull_requests]
+    tester: [issues, pull_requests]
+    devops: [actions, releases, repository_management]
+    security: [security, pull_requests]
+    db-admin: [repository_management, pull_requests]
+    sre-monitoring: [issues, actions]
+    marketing: [issues]
+    designer: [issues]

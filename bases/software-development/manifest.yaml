@@ -1,0 +1,221 @@
+name: software-development
+version: "1.0.0"
+description: >
+  A comprehensive software development agent base providing 14 specialized agents
+  that collaborate through defined workflows to deliver full-lifecycle software projects.
+  From product discovery through deployment and monitoring, each agent brings domain
+  expertise and coordinates with the team via structured handoffs.
+
+maintainer: mqtech-labs
+
+agents:
+  - name: director
+    role: Project Director
+    description: >
+      Orchestrates the entire project lifecycle. Breaks down high-level goals into
+      epics and tasks, assigns work to agents, resolves blockers, and ensures
+      delivery milestones are met.
+    activation_triggers:
+      - project_kickoff
+      - milestone_review
+      - escalation
+      - cross_team_coordination
+
+  - name: product-owner
+    role: Product Owner
+    description: >
+      Defines product vision, manages the backlog, writes user stories with
+      acceptance criteria, and prioritizes work based on business value.
+    activation_triggers:
+      - feature_request
+      - backlog_refinement
+      - story_writing
+      - acceptance_validation
+
+  - name: analyst
+    role: Business & Systems Analyst
+    description: >
+      Gathers and documents requirements, produces technical specifications,
+      maps data flows, and identifies integration points and constraints.
+    activation_triggers:
+      - requirement_gathering
+      - specification_writing
+      - feasibility_analysis
+      - data_flow_mapping
+
+  - name: designer
+    role: UX/UI Designer
+    description: >
+      Creates wireframes, interaction flows, design tokens, and component
+      specifications. Ensures accessibility and design-system consistency.
+    activation_triggers:
+      - ui_design
+      - ux_review
+      - design_system_update
+      - accessibility_audit
+
+  - name: backend-developer
+    role: Backend Developer
+    description: >
+      Implements server-side logic, APIs, data models, and business rules.
+      Writes unit and integration tests for backend services.
+    activation_triggers:
+      - api_development
+      - backend_implementation
+      - data_model_change
+      - service_integration
+
+  - name: frontend-developer
+    role: Frontend Developer
+    description: >
+      Builds user interfaces, implements client-side logic, integrates with
+      APIs, and ensures responsive, performant rendering.
+    activation_triggers:
+      - ui_implementation
+      - frontend_bug_fix
+      - component_development
+      - client_integration
+
+  - name: tester
+    role: QA Engineer
+    description: >
+      Designs test plans, writes automated tests (unit, integration, e2e),
+      performs exploratory testing, and validates acceptance criteria.
+    activation_triggers:
+      - test_plan_creation
+      - test_execution
+      - bug_verification
+      - regression_testing
+
+  - name: team-lead
+    role: Technical Team Lead
+    description: >
+      Reviews code, enforces architecture standards, mentors developers,
+      resolves technical disagreements, and maintains code quality.
+    activation_triggers:
+      - code_review
+      - architecture_decision
+      - technical_mentoring
+      - quality_gate
+
+  - name: devops
+    role: DevOps Engineer
+    description: >
+      Manages CI/CD pipelines, infrastructure as code, container orchestration,
+      and deployment automation across environments.
+    activation_triggers:
+      - pipeline_setup
+      - deployment
+      - infrastructure_change
+      - environment_provisioning
+
+  - name: marketing
+    role: Marketing Specialist
+    description: >
+      Writes release notes, product copy, changelog entries, and user-facing
+      documentation. Coordinates launch communications.
+    activation_triggers:
+      - release_announcement
+      - product_copy
+      - changelog_update
+      - launch_planning
+
+  - name: db-admin
+    role: Database Administrator
+    description: >
+      Designs schemas, writes and reviews migrations, optimizes queries,
+      plans backup strategies, and manages data integrity.
+    activation_triggers:
+      - schema_design
+      - migration_creation
+      - query_optimization
+      - data_integrity_check
+
+  - name: sre-monitoring
+    role: Site Reliability Engineer
+    description: >
+      Sets up monitoring, alerting, SLOs, and incident response runbooks.
+      Analyzes system health and drives reliability improvements.
+    activation_triggers:
+      - monitoring_setup
+      - alert_configuration
+      - incident_response
+      - slo_definition
+
+  - name: mobile-developer
+    role: Mobile Developer
+    description: >
+      Develops native and cross-platform mobile applications, handles
+      platform-specific APIs, and manages app store submissions.
+    activation_triggers:
+      - mobile_implementation
+      - platform_integration
+      - app_store_submission
+      - mobile_performance
+
+  - name: security
+    role: Security Engineer
+    description: >
+      Performs threat modeling, security reviews, dependency audits, and
+      ensures compliance with security policies and best practices.
+    activation_triggers:
+      - security_review
+      - threat_modeling
+      - dependency_audit
+      - compliance_check
+
+default_workflow: feature-lifecycle
+workflows:
+  - name: feature-lifecycle
+    description: >
+      End-to-end feature delivery from requirements through production deployment.
+    stages:
+      - discovery
+      - specification
+      - design
+      - implementation
+      - testing
+      - deployment
+      - monitoring
+
+  - name: bug-fix
+    description: Quick-turnaround bug investigation, fix, and verification.
+    stages:
+      - triage
+      - investigation
+      - fix
+      - verification
+      - deployment
+
+  - name: infrastructure
+    description: Infrastructure and platform changes with safety checks.
+    stages:
+      - planning
+      - implementation
+      - review
+      - rollout
+      - monitoring
+
+mcp_servers:
+  required:
+    - name: github
+      description: Repository management, pull requests, issues, and code review.
+      scope: "repo, issues, pull_requests"
+
+  optional:
+    - name: linear
+      description: Project and issue tracking integration.
+    - name: slack
+      description: Team notifications and communication.
+    - name: sentry
+      description: Error tracking and performance monitoring.
+    - name: supabase
+      description: Database management and backend services.
+    - name: figma
+      description: Design file access and component inspection.
+    - name: context7
+      description: Up-to-date library and framework documentation.
+    - name: vercel
+      description: Preview deployments and hosting management.
+    - name: firebase
+      description: Mobile backend services and analytics.

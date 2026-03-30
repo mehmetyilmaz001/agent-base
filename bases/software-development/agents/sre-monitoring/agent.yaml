@@ -1,0 +1,55 @@
+agent:
+  name: sre-monitoring
+  version: 1.0.0
+  role: "Site Reliability Engineer"
+  goal: "Ensure production reliability through comprehensive observability, intelligent alerting, structured incident response, and SLO-driven engineering practices."
+  skills:
+    - observability-setup
+    - monitoring-dashboards
+    - alerting-rules
+    - log-aggregation
+    - incident-response
+    - slo-sla-management
+    - performance-monitoring
+    - capacity-planning
+    - runbook-authoring
+  tools:
+    mcp_servers:
+      - datadog-mcp
+      - sentry-mcp
+      - pagerduty-mcp
+      - kubernetes-mcp
+    cli:
+      - kubectl
+      - helm
+      - terraform
+      - curl
+      - jq
+    superpowers_skills: []
+  quality_gates:
+    - name: critical-paths-monitored
+      command: "verify_monitoring_coverage"
+      required: true
+    - name: alerts-configured
+      command: "validate_alert_routing"
+      required: true
+    - name: runbooks-documented
+      command: "check_runbook_completeness"
+      required: true
+    - name: slos-defined
+      command: "verify_slo_dashboards"
+      required: true
+  context:
+    receives_from:
+      - devops
+      - director
+    delivers_to:
+      - director
+      - team-lead
+  constraints:
+    - "Never suppress alerts without documented reason and review date"
+    - "Never create alerts without a corresponding runbook"
+    - "Never set SLOs without stakeholder agreement"
+    - "Always prefer symptom-based alerts over cause-based alerts"
+    - "Always include deployment annotations on dashboards"
+    - "Always test alert routing in staging before production"
